@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Books list</title>
+</head>
+<body>
+
+    <div th:if="${books.isEmpty()}">
+        <h1>No books found</h1>
+    </div>
+
+    <table th:if="${ not books.isEmpty()}">
+<!--        <table th:if="${ ne books.isEmpty()}">-->
+<!--            <table th:if="${!books.isEmpty()}">-->
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Red Storm Rising</td>
+                <td>Tom Clancy</td>
+                <td>GBest book</td>
+                <td>10</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
