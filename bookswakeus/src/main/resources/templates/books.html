@@ -23,15 +23,22 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Red Storm Rising</td>
-                <td>Tom Clancy</td>
-                <td>GBest book</td>
-                <td>10</td>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">Red Storm Rising</td>
+                <td th:text="${book.author}">Tom Clancy</td>
+                <td th:text="${book.description}">GBest book</td>
+                <td th:text="${book.price}">10</td>
                 <td></td>
             </tr>
         </tbody>
     </table>
+
+
+
+<!--create books-->
+    <div>
+        <a th:href="@{/books/create}" th:text="'Create book'">Add book</a>
+    </div>
 
 </body>
 </html>
