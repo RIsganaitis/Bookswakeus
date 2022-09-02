@@ -31,14 +31,32 @@ public class BooksRepo {
 
     public void update(Book book) {
 
-        Integer index = null;
-        for (int i = 0; i < bookList.size(); i++) {
-            if (bookList.get(i).getId().equals(book.getId())){
-                index = i;
-            }
-        }
+        Integer index = getIndex(book.getId());
+
         if (index != null){
             bookList.set(index, book);
         }
     }
+
+    public void delete(UUID id) {
+
+        Integer index = getIndex(id);
+        if (index != null){
+            bookList.remove(index.intValue());
+        }
+
+    }
+
+    private Integer getIndex(UUID id) {
+
+        for (int i = 0; i < bookList.size(); i++) {
+            if (bookList.get(i).getId().equals(id)){
+                return i;
+            }
+        }
+        return null;
+    }
+
+
+
 }

@@ -4,6 +4,9 @@
     <title>Books list</title>
 </head>
 <body>
+    <div th:if="${message ne null}">
+        <h3 th:text="${message}">message</h3>
+    </div>
 
     <div th:if="${books.isEmpty()}">
         <h1>No books found</h1>
@@ -30,6 +33,11 @@
                 <td th:text="${book.price}">10</td>
                 <td>
                     <a th:href="@{/books/{id}(id=${book.id})}" th:text="'Edit'">Edit</a>
+
+                    <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
+                        <button type="submit" th:text="'Delete'">Delete</button>
+                    </form>
+
                 </td>
             </tr>
         </tbody>

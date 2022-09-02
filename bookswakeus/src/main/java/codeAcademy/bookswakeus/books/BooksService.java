@@ -33,4 +33,8 @@ public class BooksService {
     public void updateBook(Book book) {
         booksRepo.update(book);
     }
+
+    public void deleteBook(UUID id) {
+        booksRepo.delete(id);
+    }
 }

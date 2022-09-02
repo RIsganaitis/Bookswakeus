@@ -37,6 +37,8 @@ public class BooksController {
     public String createBook(Book book, Model model){
         booksService.createBook(book);
         model.addAttribute("books", booksService.getBooks());
+        String message = "Book " + book.getTitle() + " succesfully created";
+        model.addAttribute("message", message);
         return "books";
     }
 
@@ -53,8 +55,23 @@ public class BooksController {
     public String updateBook(Book book, Model model){
 
         booksService.updateBook(book);
+        String message = "Book " + book.getTitle() + " succesfully updated";
+        model.addAttribute("message", message);
 
         return getBooks(model);
+    }
+
+    @PostMapping("/{id}/delete")
+    public String deleteBook(@PathVariable UUID id, Model model){
+
+
+        Book book = booksService.getBook(id);
+        booksService.deleteBook(id);
+        String message = "Book " + book.getTitle() + " succesfully deleted";
+        model.addAttribute("message", message);
+
+        return getBooks(model);
+
     }
 
 
