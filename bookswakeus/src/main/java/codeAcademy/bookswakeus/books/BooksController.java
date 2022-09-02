@@ -1,7 +1,6 @@
 package codeAcademy.bookswakeus.books;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -49,6 +47,14 @@ public class BooksController {
         model.addAttribute("book", booksService.getBook(id));
 
         return "bookForm";
+    }
+
+    @PostMapping("/{id}")
+    public String updateBook(Book book, Model model){
+
+        booksService.updateBook(book);
+
+        return getBooks(model);
     }
 
 

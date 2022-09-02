@@ -2,9 +2,7 @@ package codeAcademy.bookswakeus.books;
 
 import org.springframework.stereotype.Repository;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,5 +27,18 @@ public class BooksRepo {
                 .filter(book -> book.getId().equals(id))
                 .findFirst()
                 .orElse(null);
+    }
+
+    public void update(Book book) {
+
+        Integer index = null;
+        for (int i = 0; i < bookList.size(); i++) {
+            if (bookList.get(i).getId().equals(book.getId())){
+                index = i;
+            }
+        }
+        if (index != null){
+            bookList.set(index, book);
+        }
     }
 }

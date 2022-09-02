@@ -29,4 +29,8 @@ public class BooksService {
 
         return booksRepo.getById(id);
     }
+
+    public void updateBook(Book book) {
+        booksRepo.update(book);
+    }
 }
