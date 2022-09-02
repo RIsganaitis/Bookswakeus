@@ -3,16 +3,31 @@ package codeAcademy.bookswakeus.books;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class BooksRepo {
 
 
-    public List<Book> getBooks(){
-        return Collections.singletonList(new Book("book1", "author1",
-                "description", new BigDecimal("1.5")));
+    private final List<Book> bookList = new ArrayList<>();
+
+    public List<Book> getAll(){
+        return bookList;
     }
 
+
+    public void save(Book book) {
+        bookList.add(book);
+    }
+
+    public Book getById(UUID id) {
+
+        return bookList.stream()
+                .filter(book -> book.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
 }

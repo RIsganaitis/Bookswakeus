@@ -5,25 +5,26 @@
     <title>Add book</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" th:object="${book}">
         <div>
             <label th:text="Title">Title</label>
-            <input name="title">
+            <input th:field="*{title}">
+
         </div>
 
         <div>
             <label th:text="Author">Author</label>
-            <input name="author">
+            <input th:field="*{author}">
         </div>
 
         <div>
             <label th:text="Description">Title</label>
-            <textarea name="description"></textarea>
+            <textarea th:field="*{description}"></textarea>
         </div>
 
         <div>
             <label th:text="Price">Title</label>
-            <input name="price">
+            <input th:field="*{price}">
         </div>
 
         <div>
