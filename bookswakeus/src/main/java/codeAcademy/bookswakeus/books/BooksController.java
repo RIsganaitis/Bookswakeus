@@ -37,7 +37,7 @@ public class BooksController {
     public String createBook(Book book, Model model){
         booksService.createBook(book);
         model.addAttribute("books", booksService.getBooks());
-        String message = "Book " + book.getTitle() + " succesfully created";
+        String message = "Book '" + book.getTitle() + "' successfully created";
         model.addAttribute("message", message);
         return "books";
     }
@@ -55,7 +55,7 @@ public class BooksController {
     public String updateBook(Book book, Model model){
 
         booksService.updateBook(book);
-        String message = "Book " + book.getTitle() + " succesfully updated";
+        String message = "Book '" + book.getTitle() + "' successfully updated";
         model.addAttribute("message", message);
 
         return getBooks(model);
@@ -67,7 +67,7 @@ public class BooksController {
 
         Book book = booksService.getBook(id);
         booksService.deleteBook(id);
-        String message = "Book " + book.getTitle() + " succesfully deleted";
+        String message = "Book '" + book.getTitle() + "' successfully deleted";
         model.addAttribute("message", message);
 
         return getBooks(model);
