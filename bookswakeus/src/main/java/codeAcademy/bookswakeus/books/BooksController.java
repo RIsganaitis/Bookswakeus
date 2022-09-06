@@ -3,10 +3,7 @@ package codeAcademy.bookswakeus.books;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -72,6 +69,15 @@ public class BooksController {
 
         return getBooks(model);
 
+    }
+
+    @GetMapping("/search")
+    public String searchBook(@RequestParam String input, Model model){
+
+        List<Book> filteredBooks = booksService.findAllBooksByTitle(input);
+        model.addAttribute("books", filteredBooks);
+
+        return "books";
     }
 
 

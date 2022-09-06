@@ -1,5 +1,6 @@
-package codeAcademy.bookswakeus.books;
+package codeAcademy.bookswakeus.books.repos;
 
+import codeAcademy.bookswakeus.books.Book;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class BooksRepo {
+public class MockedBooksRepo {
 
 
     private final List<Book> bookList = new ArrayList<>();
@@ -15,7 +16,6 @@ public class BooksRepo {
     public List<Book> getAll(){
         return bookList;
     }
-
 
     public void save(Book book) {
         bookList.add(book);
@@ -32,7 +32,6 @@ public class BooksRepo {
     public void update(Book book) {
 
         Integer index = getIndex(book.getId());
-
         if (index != null){
             bookList.set(index, book);
         }

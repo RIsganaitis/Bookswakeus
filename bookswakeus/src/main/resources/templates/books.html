@@ -10,6 +10,13 @@
         <span th:text="${message}">message</span>
     </div>
 
+    <div>
+        <form th:action="@{/books/search}" method="get">
+            <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">
+            <button th:text="Search"></button>
+        </form>
+    </div>
+
     <div th:if="${books.isEmpty()}">
         <h1>No books found</h1>
     </div>
@@ -41,6 +48,18 @@
             </tr>
         </tbody>
     </table>
+
+
+<!--    <section>-->
+<!--        <div th:each="book : ${books}">-->
+<!--&lt;!&ndash;            <img src="">&ndash;&gt;-->
+<!--            <div>-->
+<!--                <span th:text="${book.title}"></span>-->
+<!--                <span th:text="${book.author}"></span>-->
+<!--                <span th:text="${book.price}"></span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </section>-->
 
 
 
