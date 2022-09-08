@@ -1,6 +1,7 @@
 package codeAcademy.bookswakeus.books;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,8 @@ public class BooksController {
     private final BooksService booksService;
 
     @GetMapping
-    public String getBooks(Model model) {
-        List<Book> books = booksService.getBooks();
+    public String getBooks(@RequestParam Integer page, Model model) {
+        Page<Book> books = booksService.getBooks(page);
         model.addAttribute("books", books);
         return "books";
     }
@@ -33,7 +34,7 @@ public class BooksController {
     @PostMapping("/create")
     public String createBook(Book book, Model model){
         booksService.createBook(book);
-        model.addAttribute("books", booksService.getBooks());
+        model.addAttribute("books", booksService.getBooks(null));
         String message = "Book '" + book.getTitle() + "' successfully created";
         model.addAttribute("message", message);
         return "books";
@@ -55,7 +56,7 @@ public class BooksController {
         String message = "Book '" + book.getTitle() + "' successfully updated";
         model.addAttribute("message", message);
 
-        return getBooks(model);
+        return getBooks(null, model);
     }
 
     @PostMapping("/{id}/delete")
@@ -67,7 +68,7 @@ public class BooksController {
         String message = "Book '" + book.getTitle() + "' successfully deleted";
         model.addAttribute("message", message);
 
-        return getBooks(model);
+        return getBooks(null, model);
 
     }
 

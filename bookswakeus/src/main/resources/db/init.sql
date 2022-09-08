@@ -6,7 +6,7 @@ insert into Book (id, title, author, description, price) values
   ('00000000-0000-0000-0000-000000000001' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.12),
   ('00000000-0000-0000-0000-000000000002' ,'Storm Rising1', 'Tom Clancy1', 'very good book1', 14.12),
   ('00000000-0000-0000-0000-000000000003' ,'Red Storm Rising', 'm Clancy', 'very good book', 1512),
---  ('00000000-0000-0000-0000-000000000004' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 5.12),
+  ('00000000-0000-0000-0000-000000000004' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 5.12),
 --  ('00000000-0000-0000-0000-000000000005' ,'ReStorm Rising', 'Tom Clancy', 'very good book', 15.1),
 --  ('00000000-0000-0000-0000-000000000006' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 1.12),
 --  ('00000000-0000-0000-0000-000000000007' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 55.12),
@@ -19,7 +19,8 @@ insert into Book (id, title, author, description, price) values
 --  ('00000000-0000-0000-0000-000000000014' ,'Red Storm Rising', 'To Clancy', 'very good book', 15.2),
 --  ('00000000-0000-0000-0000-000000000016' ,'Red Storm Rising', 'Tom lancy', 'very good book', 152),
 --  ('00000000-0000-0000-0000-000000000017' ,'Red Storm Rsing1', 'Tom Clancy1', 'very good book1', 12),
---  ('00000000-0000-0000-0000-000000000018' ,'Redtorm Rising', 'Tom Clancy', 'very good book', 12),
---  ('00000000-0000-0000-0000-000000000019' ,'Red Storm Rising1', 'm Clancy1', 'very good book1', 15.1),
---  ('00000000-0000-0000-0000-000000000020' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.2),
-  ('00000000-0000-0000-0000-000000000021' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 4.12);
+  ('00000000-0000-0000-0000-000000000018' ,'Redtorm Rising', 'Tom Clancy', 'very good book', 12),
+  ('00000000-0000-0000-0000-000000000019' ,'Red Storm Rising1', 'm Clancy1', 'very good book1', 15.1),
+  ('00000000-0000-0000-0000-000000000020' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.2),
+  ('00000000-0000-0000-0000-000000000021' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.2),
+  ('00000000-0000-0000-0000-000000000022' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 4.12);

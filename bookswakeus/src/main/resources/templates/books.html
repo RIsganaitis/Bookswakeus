@@ -6,16 +6,20 @@
 
 </head>
 <body class="container">
+<!--alert message-->
     <div class="alert alert-success" th:if="${message ne null}">
         <span th:text="${message}">message</span>
     </div>
+<!--end of message-->
 
+<!--search-->
     <div>
         <form th:action="@{/books/search}" method="get">
             <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">
             <button th:text="Search"></button>
         </form>
     </div>
+<!--end of search-->
 
     <div th:if="${books.isEmpty()}">
         <h1>No books found</h1>
@@ -48,6 +52,31 @@
             </tr>
         </tbody>
     </table>
+
+<!--    pagination-->
+    <ul class="pagination">
+        <li th:classappend="${books.hasPrevious() ? '' : 'disabled'}" class="page-item">
+            <a class="page-link" th:href="@{''(page=${books.number - 1})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+<!--                <span class="sr-only">Previous</span>-->
+            </a>
+        </li>
+
+
+        <li th:each="page : ${#numbers.sequence(1, books.totalPages)}" class="page-item"
+            th:classappend="${books.number == page - 1 ? 'active' : ''}">
+            <a th:href="@{''(page=${page-1})}" th:text="${page}" class="page-link">1</a>
+        </li>
+
+
+        <li th:classappend="${books.hasNext() ? '' : 'disabled'}" class="page-item">
+            <a class="page-link" th:href="@{''(page=${books.number + 1})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+<!--                <span class="sr-only">Next</span>-->
+            </a>
+        </li>
+    </ul>
+<!--    end of pagination-->
 
 
 <!--    <section>-->

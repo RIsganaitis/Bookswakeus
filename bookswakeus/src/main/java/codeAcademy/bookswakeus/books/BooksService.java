@@ -1,8 +1,10 @@
 package codeAcademy.bookswakeus.books;
 
 import codeAcademy.bookswakeus.books.repos.JpaBooksRepos;
-import codeAcademy.bookswakeus.books.repos.MockedBooksRepo;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,9 +16,9 @@ public class BooksService {
 
     private final JpaBooksRepos booksRepo;
 
-    public List<Book> getBooks() {
+    public Page<Book> getBooks(Integer page) {
 
-        return booksRepo.findAll();
+        return booksRepo.findAll(PageRequest.of(page, 5));
     }
 
     public void createBook(Book book) {
