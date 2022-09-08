@@ -16,9 +16,9 @@ public class BooksService {
 
     private final JpaBooksRepos booksRepo;
 
-    public Page<Book> getBooks(Integer page) {
+    public Page<Book> getBooks(Pageable pageable) {
 
-        return booksRepo.findAll(PageRequest.of(page, 5));
+        return booksRepo.findAll(pageable);
     }
 
     public void createBook(Book book) {

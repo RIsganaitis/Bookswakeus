@@ -2,9 +2,11 @@ package codeAcademy.bookswakeus.books;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,8 +19,8 @@ public class BooksController {
     private final BooksService booksService;
 
     @GetMapping
-    public String getBooks(@RequestParam Integer page, Model model) {
-        Page<Book> books = booksService.getBooks(page);
+    public String getBooks(Pageable pageable, Model model) {
+        Page<Book> books = booksService.getBooks(pageable);
         model.addAttribute("books", books);
         return "books";
     }
@@ -32,12 +34,14 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public String createBook(Book book, Model model){
+    public String createBook(Book book, RedirectAttributes redirectAttributes){
         booksService.createBook(book);
-        model.addAttribute("books", booksService.getBooks(null));
         String message = "Book '" + book.getTitle() + "' successfully created";
-        model.addAttribute("message", message);
-        return "books";
+        redirectAttributes.addFlashAttribute("message", message);
+//        redirectAttributes.addAttribute("message", message);
+
+
+        return "redirect:/books";
     }
 
 
@@ -50,25 +54,24 @@ public class BooksController {
     }
 
     @PostMapping("/{id}")
-    public String updateBook(Book book, Model model){
+    public String updateBook(Book book, RedirectAttributes redirectAttributes){
 
         booksService.updateBook(book);
         String message = "Book '" + book.getTitle() + "' successfully updated";
-        model.addAttribute("message", message);
+        redirectAttributes.addFlashAttribute("message", message);
 
-        return getBooks(null, model);
+        return "redirect:/books";
     }
 
     @PostMapping("/{id}/delete")
-    public String deleteBook(@PathVariable UUID id, Model model){
-
+    public String deleteBook(@PathVariable UUID id, RedirectAttributes redirectAttributes){
 
         Book book = booksService.getBook(id);
         booksService.deleteBook(id);
         String message = "Book '" + book.getTitle() + "' successfully deleted";
-        model.addAttribute("message", message);
+        redirectAttributes.addFlashAttribute("message", message);
 
-        return getBooks(null, model);
+        return "redirect:/books";
 
     }
 
