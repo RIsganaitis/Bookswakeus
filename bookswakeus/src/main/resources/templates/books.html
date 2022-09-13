@@ -13,6 +13,14 @@
     </div>
 <!--end of message-->
 
+<!--languages-->
+
+<div>
+    <a th:href="@{''(lang='lt')} " th:text="#{lang.lithuanian}">LT</a>
+    <a th:href="@{''(lang='en')}" th:text="#{lang.english} ">EN</a>
+</div>
+<!--end of languages-->
+
 <!--search-->
     <div>
         <form th:action="@{/books/search}" method="get">
@@ -62,10 +70,10 @@
                 <td th:text="${book.description}">GBest book</td>
                 <td th:text="${book.price}">10</td>
                 <td>
-                    <a class="btn btn-primary" th:href="@{/books/{id}(id=${book.id})}" th:text="'Edit'">Edit</a>
+                    <a class="btn btn-primary" th:href="@{/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
 
                     <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
-                        <button class="btn btn-primary" type="submit" th:text="'Delete'">Delete</button>
+                        <button class="btn btn-primary" type="submit" th:text="#{main.delete}">Delete</button>
                     </form>
 
                 </td>
@@ -117,7 +125,7 @@
 
 <!--create books-->
     <div>
-        <a class="btn btn-primary" th:href="@{/books/create}" th:text="'Create book'">Add book</a>
+        <a class="btn btn-primary" th:href="@{/books/create}" th:text="#{main.createbook}">Add book</a>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
