@@ -1,5 +1,6 @@
 package codeAcademy.bookswakeus.books;
 
+import codeAcademy.bookswakeus.books.errors.BookNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -82,6 +83,15 @@ public class BooksController {
         model.addAttribute("books", filteredBooks);
 
         return "books";
+    }
+
+    @ExceptionHandler(BookNotFoundException.class)
+    public String bookNotFound(BookNotFoundException e, Model model){
+
+        model.addAttribute("messageCode", e.getMessage());
+        model.addAttribute("bookId", e.getBookId());
+
+        return "error/bookNotFoundPage";
     }
 
 

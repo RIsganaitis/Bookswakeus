@@ -1,5 +1,6 @@
 package codeAcademy.bookswakeus.books;
 
+import codeAcademy.bookswakeus.books.errors.BookNotFoundException;
 import codeAcademy.bookswakeus.books.repos.JpaBooksRepos;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -31,7 +32,7 @@ public class BooksService {
 
     public Book getBook(UUID id) {
 
-        return booksRepo.findById(id).orElse(null);
+        return booksRepo.findById(id).orElseThrow(() -> new BookNotFoundException("error.bookNotFound", id));
     }
 
     public void updateBook(Book book) {
