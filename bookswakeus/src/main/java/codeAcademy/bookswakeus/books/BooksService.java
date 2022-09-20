@@ -1,6 +1,7 @@
 package codeAcademy.bookswakeus.books;
 
 import codeAcademy.bookswakeus.books.errors.BookNotFoundException;
+import codeAcademy.bookswakeus.books.repos.BooksRepo;
 import codeAcademy.bookswakeus.books.repos.JpaBooksRepos;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,7 @@ import java.util.UUID;
 @Service
 public class BooksService {
 
-    private final JpaBooksRepos booksRepo;
+    private final BooksRepo booksRepo;
 
     public Page<Book> getBooks(Pageable pageable) {
 
