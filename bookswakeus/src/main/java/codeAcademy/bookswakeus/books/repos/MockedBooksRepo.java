@@ -27,7 +27,7 @@ public class MockedBooksRepo implements  BooksRepo{
         return new PageImpl<>(bookList, pageable, bookList.size());
     }
 
-    public void save(Book book) {
+    public Book save(Book book) {
 
         Optional<Book> bookOptional = findById(book.getId());
 
@@ -36,6 +36,7 @@ public class MockedBooksRepo implements  BooksRepo{
         } else {
             createNewBook(book);
         }
+        return book;
     }
 
     private void createNewBook(Book book) {

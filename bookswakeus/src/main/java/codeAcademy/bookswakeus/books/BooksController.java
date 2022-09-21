@@ -2,6 +2,7 @@ package codeAcademy.bookswakeus.books;
 
 import codeAcademy.bookswakeus.books.errors.BookNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 import java.util.UUID;
 
-@AllArgsConstructor
+//@AllArgsConstructor
 @RequestMapping("/books")
 @Controller
 public class BooksController {
@@ -93,6 +94,31 @@ public class BooksController {
 
         return "error/bookNotFoundPage";
     }
+
+//    footer data
+    private final String companyName;
+    private final String companyAddress;
+    private final String iban;
+
+    public BooksController(BooksService booksService,
+                           @Value("${company.name}") String companyName,
+                           @Value("${company.address}") String companyAddress,
+                           @Value("${company.iban: LT6+46543312}") String iban) {
+        this.booksService = booksService;
+        this.companyName = companyName;
+        this.companyAddress = companyAddress;
+        this.iban = iban;
+    }
+
+    @ModelAttribute
+    public void addCompanyDataModel(Model model){
+        model.addAttribute("companyName", companyName);
+        model.addAttribute("companyAddress", companyAddress);
+        model.addAttribute("iban", iban);
+    }
+
+
+//    footer data
 
 
 }

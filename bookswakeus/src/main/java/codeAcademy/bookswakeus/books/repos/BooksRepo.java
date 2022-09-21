@@ -12,7 +12,7 @@ public interface BooksRepo {
 
     Page<Book> findAll(Pageable pageable);
 
-    void save(Book book);
+    Book save(Book book);
 
     Optional<Book> findById(UUID id);
 
