@@ -41,7 +41,7 @@
     <table class="table table-striped" th:if="${ not books.isEmpty()}">
         <thead>
             <tr>
-                <th>
+                <th>Title
                     <a th:with="ascending=${books.sort.getOrderFor('title')?.direction?.name() eq 'ASC'}"
                        th:href="@{''(sort='title,' + ${ascending ? 'DESC' : 'ASC'} + ',ignoreCase')}">
                         <i class="fa-solid"
@@ -129,9 +129,9 @@
     </div>
 
     <footer class="page-footer font-small blue">
-        <div th:text="${companyName}"></div>
-        <div th:text="${companyAddress}"></div>
-        <div th:text="${iban}"></div>
+        <div th:text="${companyInfo.name}"></div>
+        <div th:text="${companyInfo.address}"></div>
+        <div th:text="${companyInfo.iban}"></div>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

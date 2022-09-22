@@ -6,6 +6,14 @@
 </head>
 <body>
     <form method="POST" th:object="${book}">
+
+        <section>
+            <div th:if="${#fields.hasErrors()}">
+                <ul>
+                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>
+                </ul>
+            </div>
+        </section>
         <div>
             <label th:text="Title">Title</label>
             <input th:field="*{title}">

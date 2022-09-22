@@ -7,13 +7,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
-//@AllArgsConstructor
+@AllArgsConstructor
 @RequestMapping("/books")
 @Controller
 public class BooksController {
@@ -36,7 +38,11 @@ public class BooksController {
     }
 
     @PostMapping("/create")
-    public String createBook(Book book, RedirectAttributes redirectAttributes){
+    public String createBook(@Valid Book book, BindingResult errors, RedirectAttributes redirectAttributes){
+
+        if(errors.hasErrors()){
+            return "bookForm";
+        }
         booksService.createBook(book);
         String message = "Book '" + book.getTitle() + "' successfully created";
         redirectAttributes.addFlashAttribute("message", message);
@@ -56,7 +62,11 @@ public class BooksController {
     }
 
     @PostMapping("/{id}")
-    public String updateBook(Book book, RedirectAttributes redirectAttributes){
+    public String updateBook(@Valid Book book, BindingResult errors ,RedirectAttributes redirectAttributes){
+
+        if(errors.hasErrors()){
+            return "bookForm";
+        }
 
         booksService.updateBook(book);
         String message = "Book '" + book.getTitle() + "' successfully updated";
@@ -96,25 +106,11 @@ public class BooksController {
     }
 
 //    footer data
-    private final String companyName;
-    private final String companyAddress;
-    private final String iban;
+    private final CompanyInfo companyInfo;
 
-    public BooksController(BooksService booksService,
-                           @Value("${company.name}") String companyName,
-                           @Value("${company.address}") String companyAddress,
-                           @Value("${company.iban: LT6+46543312}") String iban) {
-        this.booksService = booksService;
-        this.companyName = companyName;
-        this.companyAddress = companyAddress;
-        this.iban = iban;
-    }
-
-    @ModelAttribute
-    public void addCompanyDataModel(Model model){
-        model.addAttribute("companyName", companyName);
-        model.addAttribute("companyAddress", companyAddress);
-        model.addAttribute("iban", iban);
+    @ModelAttribute("companyInfo")
+    public CompanyInfo addCompanyDataModel(){
+        return companyInfo;
     }
 
 
