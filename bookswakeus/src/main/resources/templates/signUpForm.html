@@ -6,12 +6,25 @@
         <title>Title</title>
     </head>
 <body>
-<form method="post">
+<form method="post" th:object="${user}">
     <h1 th:text="#{signup.registernewuser}">new user</h1>
+    <div>
+        <label th:text="#{signup.name}">Name</label>
+        <input type="text">
+    </div>
     <div>
         <label th:text="#{signup.email}">Email</label>
         <input type="text">
     </div>
+
+    <div>
+        <label>Phone number</label>
+        <input th:field="*{phoneNumber}" th:errorclass="error-block">
+        <div th:if="${#fields.hasErrors('phoneNumber')}">
+            <span th:errors="*{phoneNumber}">Errors</span>
+        </div>
+    </div>
+
     <div>
         <label th:text="#{signup.password}">Password</label>
         <input type="password">

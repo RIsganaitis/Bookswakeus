@@ -1,6 +1,7 @@
 package codeAcademy.bookswakeus.users;
 
 
+import codeAcademy.bookswakeus.validation.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,8 @@ import javax.persistence.Id;
 public class User {
     @Id
     private String name;
+    @PhoneNumber(phoneNumberType = PhoneNumber.PhoneNumberType.FULL)
+    private String phoneNumber;
     private String email;
     private String password;
 

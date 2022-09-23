@@ -52,14 +52,13 @@ public class LocalesConfiguration implements WebMvcConfigurer{
 
     }
 
-//    Nežinau, kam čia. Reikalingas get validator metodui
-//    @Bean
-//    public MessageSource messageSource(){
-//        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-//        messageSource.setBasename("classpath:messages/messages");
-//        messageSource.setDefaultEncoding("UTF-8");
-//        return messageSource;
-//    }
+    @Bean
+    public MessageSource messageSource(){
+        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        messageSource.setBasename("classpath:messages/messages");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
 
 //    Validation messages. Greičiausiai reiks ištrint
 //    @Bean
