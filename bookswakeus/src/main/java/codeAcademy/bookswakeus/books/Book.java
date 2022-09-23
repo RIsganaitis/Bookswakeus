@@ -25,16 +25,16 @@ public class Book {
     @Id
     @Type(type = "uuid-char")
     private UUID id;
-    @NotBlank
+    @NotBlank(message = "'title' privalo būti užpildytas")
     @Size(min = 2, max = 50)
     private String title;
     @NotBlank
     @Size(min = 2, max = 50)
     private String author;
     @Size(min = 10, max = 255)
+    @NotBlank
     private String description;
     @NotNull
     @Positive
     private BigDecimal price;
-
 }

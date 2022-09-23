@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Add book</title>
+    <link rel="stylesheet" th:href="@{/style/style.css}">
 </head>
 <body>
     <form method="POST" th:object="${book}">
@@ -16,23 +17,35 @@
         </section>
         <div>
             <label th:text="Title">Title</label>
-            <input th:field="*{title}">
+            <input th:field="*{title}" th:errorclass="error-block">
+            <div th:if="${#fields.hasErrors('title')}">
+                <span th:errors="*{title}">Errors</span>
+            </div>
 
         </div>
 
         <div>
             <label th:text="Author">Author</label>
-            <input th:field="*{author}">
+            <input th:field="*{author}" th:errorclass="error-block">
+            <div th:if="${#fields.hasErrors('author')}">
+                <span th:errors="*{author}">Errors</span>
+            </div>
         </div>
 
         <div>
             <label th:text="Description">Title</label>
-            <textarea th:field="*{description}"></textarea>
+            <textarea th:field="*{description}" th:errorclass="error-block"></textarea>
+            <div th:if="${#fields.hasErrors('description')}">
+                <span th:errors="*{description}">Errors</span>
+            </div>
         </div>
 
         <div>
             <label th:text="Price">Title</label>
-            <input th:field="*{price}">
+            <input th:field="*{price}" th:errorclass="error-block">
+            <div th:if="${#fields.hasErrors('price')}">
+                <span th:errors="*{price}">Errors</span>
+            </div>
         </div>
 
         <div>
