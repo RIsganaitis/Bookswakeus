@@ -26,7 +26,7 @@ public class BooksController {
     public String getBooks(Pageable pageable, Model model) {
         Page<Book> books = booksService.getBooks(pageable);
         model.addAttribute("books", books);
-        return "books";
+        return "books2";
     }
 
 

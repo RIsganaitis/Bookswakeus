@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
+
+<section id="mainSection">
+    <!--languages-->
+
+    <div>
+        <a th:href="@{''(lang='lt')} " th:text="#{lang.lithuanian}">LT</a>
+        <a th:href="@{''(lang='en')}" th:text="#{lang.english} ">EN</a>
+    </div>
+    <!--end of languages-->
+
+    <!--search-->
+    <div>
+        <form th:action="@{/books/search}" method="get">
+            <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">
+            <button th:text="Search"></button>
+        </form>
+    </div>
+    <!--end of search-->
+
+    <div th:if="${books.isEmpty()}">
+        <h1>No books found</h1>
+    </div>
+
+    <!--check sorting direction-->
+    <!--    <div th:text="${books.sort.getOrderFor('title')?.direction}"></div>-->
+    <!--end of check sorting direction-->
+
+    <table class="table table-striped" th:if="${ not books.isEmpty()}">
+        <thead>
+        <tr>
+            <th>Title
+                <a th:with="ascending=${books.sort.getOrderFor('title')?.direction?.name() eq 'ASC'}"
+                   th:href="@{''(sort='title,' + ${ascending ? 'DESC' : 'ASC'} + ',ignoreCase')}">
+                    <i class="fa-solid"
+                       th:classappend="${ascending ? 'fa-arrow-up-z-a' : 'fa-arrow-down-a-z'}"
+                    ></i>
+                </a>
+            </th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>
+                <span>Price</span>
+                <a th:with="ascending=${books.sort.getOrderFor('price')?.direction?.name() eq 'ASC'}"
+                   th:href="@{''(sort='price,' + ${ascending ? 'DESC' : 'ASC'})}">
+                    <i class="fa-solid"
+                       th:classappend="${ascending ? 'fa-arrow-up-9-1' : 'fa-arrow-down-1-9'}"
+                    ></i>
+                </a>
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="book : ${books}">
+            <td th:text="${book.title}">Red Storm Rising</td>
+            <td th:text="${book.author}">Tom Clancy</td>
+            <td th:text="${book.description}">GBest book</td>
+            <td th:text="${book.price}">10</td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
+
+                <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
+                    <button class="btn btn-primary" type="submit" th:text="#{main.delete}">Delete</button>
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!--    pagination-->
+    <ul class="pagination"
+        th:with="order=${books.sort.sorted ? books.sort.iterator().next() : null},
+                  ignoreCase=${order ne null and order.ignoreCase ? 'ignoreCase' : ''},
+                  orderParam=${order ne null ? order.property + ',' + order.direction.name() + ',' + ignoreCase : null}">
+        <li th:classappend="${books.hasPrevious() ? '' : 'disabled'}" class="page-item">
+            <a class="page-link" th:href="@{''(page=${books.number - 1}, sort=${orderParam})}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <!--                <span class="sr-only">Previous</span>-->
+            </a>
+        </li>
+
+
+        <li th:each="page : ${#numbers.sequence(1, books.totalPages)}" class="page-item"
+            th:classappend="${books.number == page - 1 ? 'active' : ''}">
+            <a th:href="@{''(page=${page - 1}, sort=${orderParam})}"
+               th:text="${page}" class="page-link">1</a>        </li>
+
+
+        <li th:classappend="${books.hasNext() ? '' : 'disabled'}" class="page-item">
+            <a class="page-link" th:href="@{''(page=${books.number + 1}, sort=${orderParam})}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <!--                <span class="sr-only">Next</span>-->
+            </a>
+        </li>
+    </ul>
+    <!--    end of pagination-->
+
+
+    <!--    <section>-->
+    <!--        <div th:each="book : ${books}">-->
+    <!--&lt;!&ndash;            <img src="">&ndash;&gt;-->
+    <!--            <div>-->
+    <!--                <span th:text="${book.title}"></span>-->
+    <!--                <span th:text="${book.author}"></span>-->
+    <!--                <span th:text="${book.price}"></span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!--    </section>-->
+
+
+
+    <!--create books-->
+    <div>
+        <a class="btn btn-primary" th:href="@{/books/create}" th:text="#{main.createbook}">Add book</a>
+    </div></section>
+
+</html>

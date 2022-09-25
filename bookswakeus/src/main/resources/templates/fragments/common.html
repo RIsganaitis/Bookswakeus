@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<footer th:fragment="footer" class="page-footer font-small blue">
+    <p th:text="${companyInfo.name}"></p>
+    <p th:text="${companyInfo.address}"></p>
+    <p th:text="${companyInfo.iban}"></p>
+</footer>
+
+<div th:fragment="messageStatus(message)"
+     class="alert alert-success" th:if="${message ne null}">
+    <span th:text="${message}">message</span>
+</div>
+
+</html>
