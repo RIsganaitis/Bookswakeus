@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Add book</title>
-    <link rel="stylesheet" th:href="@{/style/style.css}">
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(#{bookForm.title}, ~{:: #bookForm})">
+
 <body>
+<section id="bookForm">
     <form method="POST" th:object="${book}">
 
         <section>
@@ -52,6 +50,8 @@
             <button type="submit" th:text="Add"></button>
         </div>
     </form>
+</section>
+
 
 </body>
 </html>
