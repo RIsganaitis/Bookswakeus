@@ -106,12 +106,12 @@ public class BooksController {
     }
 
 //    footer data
-    private final CompanyInfo companyInfo;
-
-    @ModelAttribute("companyInfo")
-    public CompanyInfo addCompanyDataModel(){
-        return companyInfo;
-    }
+//    private final CompanyInfo companyInfo;
+//
+//    @ModelAttribute("companyInfo")
+//    public CompanyInfo addCompanyDataModel(){
+//        return companyInfo;
+//    }
 
 
 //    footer data

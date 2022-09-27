@@ -3,18 +3,19 @@
       th:replace="fragments/layout :: layout(#{bookForm.title}, ~{:: #bookForm})">
 
 <body>
-<section id="bookForm">
+<section id="bookForm1">
     <form method="POST" th:object="${book}">
 
-        <section>
-            <div th:if="${#fields.hasErrors()}">
-                <ul>
-                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>
-                </ul>
-            </div>
-        </section>
+<!--        <section>-->
+<!--            <div th:if="${#fields.hasErrors()}">-->
+<!--                <ul>-->
+<!--                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </section>-->
+        <h2 th:text="#{book.create}"></h2>
         <div>
-            <label th:text="Title">Title</label>
+            <label th:text="#{book.form.title}">Title</label>
             <input th:field="*{title}" th:errorclass="error-block">
             <div th:if="${#fields.hasErrors('title')}">
                 <span th:errors="*{title}">Errors</span>
@@ -23,7 +24,7 @@
         </div>
 
         <div>
-            <label th:text="Author">Author</label>
+            <label th:text="#{book.form.author}">Author</label>
             <input th:field="*{author}" th:errorclass="error-block">
             <div th:if="${#fields.hasErrors('author')}">
                 <span th:errors="*{author}">Errors</span>
@@ -31,7 +32,7 @@
         </div>
 
         <div>
-            <label th:text="Description">Title</label>
+            <label th:text="#{book.form.description}">Title</label>
             <textarea th:field="*{description}" th:errorclass="error-block"></textarea>
             <div th:if="${#fields.hasErrors('description')}">
                 <span th:errors="*{description}">Errors</span>
@@ -39,7 +40,7 @@
         </div>
 
         <div>
-            <label th:text="Price">Title</label>
+            <label th:text="#{book.form.price}">Title</label>
             <input th:field="*{price}" th:errorclass="error-block">
             <div th:if="${#fields.hasErrors('price')}">
                 <span th:errors="*{price}">Errors</span>
@@ -50,7 +51,60 @@
             <button type="submit" th:text="Add"></button>
         </div>
     </form>
+
+
 </section>
+
+
+<section id="bookForm">
+    <form method="POST" th:object="${book}">
+        <div class="form-outline mb-4">
+            <input class="form-control" th:field="*{title}" th:errorclass="error-block"/>
+            <label class="form-label" th:text="#{book.form.title}">Title</label>
+            <div th:if="${#fields.hasErrors('title')}">
+                <span th:errors="*{title}">Errors</span>
+            </div>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input class="form-control" th:field="*{author}" th:errorclass="error-block"/>
+            <label class="form-label" th:text="#{book.form.author}">Author</label>
+            <div th:if="${#fields.hasErrors('author')}">
+                <span th:errors="*{author}">Errors</span>
+            </div>
+        </div>
+
+        <div class="form-outline mb-4">
+            <textarea class="form-control" rows="4" th:field="*{description}" th:errorclass="error-block"></textarea>
+            <label class="form-label" th:text="#{book.form.description}">Message</label>
+            <div th:if="${#fields.hasErrors('description')}">
+                <span th:errors="*{description}">Errors</span>
+            </div>
+        </div>
+
+        <div class="form-outline mb-4">
+            <input class="form-control" th:field="*{price}" th:errorclass="error-block" />
+            <label class="form-label" th:text="#{book.form.price}">Title</label>
+            <div th:if="${#fields.hasErrors('price')}">
+                <span th:errors="*{price}">Errors</span>
+            </div>
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-check d-flex justify-content-center mb-4">
+            <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
+            <label class="form-check-label" for="form4Example4">
+                Send me a copy of this message
+            </label>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+    </form>
+</section>
+
+
+
 
 
 </body>

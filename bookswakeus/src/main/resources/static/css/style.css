@@ -3,6 +3,10 @@
     color: indianred;
 }
 
+.light-yellow {
+    background-color: #9b903661;
+}
+
 .flex-wrap {
 flex-wrap: wrap!important;
 }
@@ -64,4 +68,15 @@ width: auto;
 
 header {
     margin-top: 1rem;
+}
+
+.dropdown-menu {
+    --bs-dropdown-min-width: 0;
+}
+.mb-3 {
+    margin-bottom: 1rem!important;
+}
+
+table * {
+    align-items: center;
 }

@@ -4,21 +4,20 @@ th:fragment="layout(title, content)">
 <head>
     <meta charset="UTF-8">
     <title th:text="${title}">Page title</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+            crossorigin="anonymous" defer></script>
 </head>
 
+<body class="container bg-light">
 
-
-<body class="container">
+<div th:replace="fragments/common :: messageStatus(message=${message})"></div>
 
 <header class="">
-    <div class="container d-flex flex-wrap justify-content-center">
+    <div class="container d-flex flex-wrap justify-content-center centered-data">
         <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
             <h1 class="fs-4" th:text="#{page.main.title}">Double header</h1>
@@ -27,15 +26,37 @@ th:fragment="layout(title, content)">
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
     </div>
-    <nav class="py-2 bg-light border-bottom py-3 mb-4 border-bottom">
+    <nav class="py-2 light-yellow py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap">
             <ul class="nav me-auto">
-                <li class="nav-item"><a href="#" class="nav-link link-dark px-2 active" aria-current="page" th:text="#{page.home}">Home</a></li>
+                <li class="nav-item"><a th:href="@{/}" class="nav-link link-dark px-2 active" aria-current="page" th:text="#{page.home}">Home</a></li>
+                <li class="nav-item"><a th:href="@{/books}" class="nav-link link-dark px-2" th:text="#{page.books}">Books</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{page.pricing}">Pricing</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{page.faq}">FAQs</a></li>
-                <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{page.about}">About</a></li>
+                <li class="nav-item"><a th:href="@{/aboutUs}" class="nav-link link-dark px-2" th:text="#{page.about}">About</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-secondary" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
+                        Language
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li>
+                            <a class="dropdown-item" th:href="@{''(lang='lt')}">
+                                <img th:src="@{/images/LT_flag.png}" class="language-selector"/>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{''(lang='en')}">
+                                <img th:src="@{/images/UK_US_flag.png}" class="language-selector"/>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
             </ul>
             <ul class="nav">
+                <li class="nav-item"><a th:href="@{/favourites}" class="nav-link link-dark px-2" th:text="#{page.favourites}"></a></li>
+
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{login}">Login</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{signup}">Sign up</a></li>
             </ul>
@@ -43,12 +64,14 @@ th:fragment="layout(title, content)">
     </nav>
 </header>
 
+
+
 <!--<header th:replace="fragments/common :: header">-->
 <!--</header>-->
 
 <!--<main th:text="content">-->
-<main th:insert="${content}">
-</main>
+<main th:insert="${content}"></main>
+
 
 <footer th:replace="fragments/common :: footer"></footer>
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="fragments/layout :: layout(#{page.favourites}, ~{:: #mainSection})">
+
+<section id="mainSection">
+    <h1>favoritai</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="favItem : ${favourites.favs}">
+            <td th:text="${favItem.book.title}">Red Storm Rising</td>
+            <td th:text="${favItem.book.author}">Tom Clancy</td>
+            <td th:text="${favItem.book.price}">10</td>
+            <td>
+                <form method="post">
+                    <button class="btn btn-outline-danger" type="submit">
+                        <i class="fa-solid fa-heart-circle-minus"></i>
+                    </button>
+                </form>
+
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    </section>
+</html>

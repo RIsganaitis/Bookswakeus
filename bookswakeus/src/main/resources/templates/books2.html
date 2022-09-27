@@ -5,13 +5,14 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
 <section id="mainSection">
     <!--languages-->
 
-    <div>
-        <a th:href="@{''(lang='lt')} " th:text="#{lang.lithuanian}">LT</a>
-        <a th:href="@{''(lang='en')}" th:text="#{lang.english} ">EN</a>
-    </div>
+<!--    <div>-->
+<!--        <a th:href="@{''(lang='lt')} " th:text="#{lang.lithuanian}">LT</a>-->
+<!--        <a th:href="@{''(lang='en')}" th:text="#{lang.english} ">EN</a>-->
+<!--    </div>-->
     <!--end of languages-->
 
     <!--search-->
+
     <div>
         <form th:action="@{/books/search}" method="get">
             <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">
@@ -60,10 +61,16 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
             <td th:text="${book.description}">GBest book</td>
             <td th:text="${book.price}">10</td>
             <td>
-                <a class="btn btn-primary" th:href="@{/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
+                <a class="btn btn-outline-secondary" th:href="@{/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
 
                 <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
-                    <button class="btn btn-primary" type="submit" th:text="#{main.delete}">Delete</button>
+                    <button class="btn btn-outline-danger" type="submit" th:text="#{main.delete}">Delete</button>
+                </form>
+
+                <form th:action="@{/favourites/{id}(id=${book.id})}" method="post">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="fa-solid fa-heart-circle-plus"></i>
+                    </button>
                 </form>
 
             </td>
@@ -116,6 +123,8 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
     <!--create books-->
     <div>
         <a class="btn btn-primary" th:href="@{/books/create}" th:text="#{main.createbook}">Add book</a>
-    </div></section>
+    </div>
+
+</section>
 
 </html>
