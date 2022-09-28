@@ -45,7 +45,8 @@ public class BooksController {
         }
         booksService.createBook(book);
         String message = "Book '" + book.getTitle() + "' successfully created";
-        redirectAttributes.addFlashAttribute("message", message);
+//        redirectAttributes.addFlashAttribute("message", message);
+        redirectAttributes.addFlashAttribute("message", "successfully.created");
 //        redirectAttributes.addAttribute("message", message);
 
 

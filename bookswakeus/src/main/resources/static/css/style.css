@@ -80,3 +80,12 @@ header {
 table * {
     align-items: center;
 }
+
+.favCount {
+    height: fit-content;
+}
+
+.favBlock {
+    display: flex;
+    align-items: center;
+}

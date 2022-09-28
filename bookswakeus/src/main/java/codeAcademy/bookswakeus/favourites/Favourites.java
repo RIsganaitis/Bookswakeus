@@ -36,4 +36,8 @@ public class Favourites {
         private final Book book;
     }
 
+    public int getSize(){
+        return favs.size();
+    }
+
 }

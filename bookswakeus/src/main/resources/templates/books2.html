@@ -13,12 +13,12 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
 
     <!--search-->
 
-    <div>
-        <form th:action="@{/books/search}" method="get">
-            <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">
-            <button th:text="Search"></button>
-        </form>
-    </div>
+<!--    <div>-->
+<!--        <form th:action="@{/books/search}" method="get">-->
+<!--            <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">-->
+<!--            <button th:text="Search"></button>-->
+<!--        </form>-->
+<!--    </div>-->
     <!--end of search-->
 
     <div th:if="${books.isEmpty()}">

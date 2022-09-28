@@ -22,9 +22,17 @@ th:fragment="layout(title, content)">
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
             <h1 class="fs-4" th:text="#{page.main.title}">Double header</h1>
         </a>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 paddingRightZero" role="search">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 paddingRightZero" role="search" th:action="@{/books/search}" method="get">
+            <input name="input" th:value="${param.input}" type="search" class="form-control" placeholder="Search..." aria-label="Search">
         </form>
+
+<!--        <div>-->
+<!--            <form th:action="@{/books/search}" method="get">-->
+<!--                <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">-->
+<!--                <button th:text="Search"></button>-->
+<!--            </form>-->
+<!--        </div>-->
+
     </div>
     <nav class="py-2 light-yellow py-3 mb-4 border-bottom">
         <div class="container d-flex flex-wrap">
@@ -55,8 +63,10 @@ th:fragment="layout(title, content)">
 
             </ul>
             <ul class="nav">
-                <li class="nav-item"><a th:href="@{/favourites}" class="nav-link link-dark px-2" th:text="#{page.favourites}"></a></li>
-
+                <li class="nav-item favBlock" style="display: flex; align-items: center;">
+                    <span th:if="${session.favourites?.size gt 0}" th:text="${session.favourites.size}" class="badge bg-secondary favCount">4</span>
+                    <a th:href="@{/favourites}" class="nav-link link-dark px-2" th:text="#{page.favourites}"></a>
+                    </li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{login}">Login</a></li>
                 <li class="nav-item"><a href="#" class="nav-link link-dark px-2" th:text="#{signup}">Sign up</a></li>
             </ul>

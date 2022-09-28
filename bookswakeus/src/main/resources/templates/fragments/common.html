@@ -17,7 +17,8 @@
 
 <div th:fragment="messageStatus(message)"
      class="alert alert-success" th:if="${message ne null}">
-    <span th:text="${message}">message</span>
+<!--    <span th:text="${message}">message</span>-->
+    <span th:text="#{${message}}">message</span>
 </div>
 
 
