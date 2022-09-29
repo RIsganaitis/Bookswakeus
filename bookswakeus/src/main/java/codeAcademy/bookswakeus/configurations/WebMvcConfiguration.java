@@ -1,22 +1,18 @@
-package codeAcademy.bookswakeus.books.configurations;
+package codeAcademy.bookswakeus.configurations;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.validation.Validator;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
-import java.util.Locale;
-
 @Configuration
-public class LocalesConfiguration implements WebMvcConfigurer{
+public class WebMvcConfiguration implements WebMvcConfigurer{
 
 
 //    cookie resolver
@@ -69,4 +65,13 @@ public class LocalesConfiguration implements WebMvcConfigurer{
 //        return localValidatorFactoryBean;
 //    }
     //
+
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/login").setViewName("loginPage");
+        registry.addRedirectViewController("/", "/public/books");
+    }
+
+
 }

@@ -61,13 +61,14 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
             <td th:text="${book.description}">GBest book</td>
             <td th:text="${book.price}">10</td>
             <td>
-                <a class="btn btn-outline-secondary" th:href="@{/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
+                <a class="btn btn-outline-secondary" th:href="@{/private/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
 
-                <form th:action="@{/books/{id}/delete(id=${book.id})}" method="post">
+<!--                <form method="post">-->
+                <form th:action="@{/private/books/{id}/delete(id=${book.id})}" method="post">
                     <button class="btn btn-outline-danger" type="submit" th:text="#{main.delete}">Delete</button>
                 </form>
 
-                <form th:action="@{/favourites/{id}(id=${book.id})}" method="post">
+                <form th:action="@{/public/favourites/{id}(id=${book.id})}" method="post">
                     <button class="btn btn-outline-success" type="submit">
                         <i class="fa-solid fa-heart-circle-plus"></i>
                     </button>
@@ -122,7 +123,7 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
 
     <!--create books-->
     <div>
-        <a class="btn btn-primary" th:href="@{/books/create}" th:text="#{main.createbook}">Add book</a>
+        <a class="btn btn-primary" th:href="@{/private/books/create}" th:text="#{main.createbook}">Add book</a>
     </div>
 
 </section>

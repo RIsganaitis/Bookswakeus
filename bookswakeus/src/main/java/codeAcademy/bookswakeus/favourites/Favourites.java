@@ -7,6 +7,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -28,8 +29,17 @@ public class Favourites {
         if(!item.isPresent()){
             favs.add(new FavouritesItem(book));
         }
-
     }
+
+//    public void remove(Book book) {
+//        Optional<FavouritesItem> item = favs.stream()
+//                .filter(i -> i.getBook().getId().equals(book.getId()))
+//                .findFirst();
+//
+//        if(item.isPresent()){
+//            favs.remove(item);
+//        }
+//    }
 
     @Data
     public static class FavouritesItem {

@@ -13,13 +13,12 @@ import java.util.UUID;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("/favourites")
 @SessionAttributes("favourites")
 public class FavouriresController {
 
     private final BooksService booksService;
 
-    @GetMapping
+    @GetMapping("/public/favourites")
     public String getFavorites(@ModelAttribute Favourites favourites, Model model){
 
         model.addAttribute("favourites", favourites);
@@ -32,13 +31,21 @@ public class FavouriresController {
         return new Favourites();
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/public/favourites/{id}")
     public String addToFavourites(@ModelAttribute Favourites favourites, @PathVariable UUID id){
 
         favourites.add(booksService.getBook(id));
 
-        return "redirect:/books";
+        return "redirect:/public/books";
     }
+
+//    @PostMapping("/{id}/remove")
+//    public String removeFromFavourites(@ModelAttribute Favourites favourites, @PathVariable UUID id){
+//
+//        favourites.remove(booksService.getBook(id));
+//
+//        return "redirect:/favourites";
+//    }
 
 
 }

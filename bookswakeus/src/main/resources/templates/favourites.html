@@ -20,6 +20,7 @@
             <td th:text="${favItem.book.author}">Tom Clancy</td>
             <td th:text="${favItem.book.price}">10</td>
             <td>
+<!--                <form th:action="@{/public/favourites/{id}/delete(id=${book.id})}" method="post">-->
                 <form method="post">
                     <button class="btn btn-outline-danger" type="submit">
                         <i class="fa-solid fa-heart-circle-minus"></i>

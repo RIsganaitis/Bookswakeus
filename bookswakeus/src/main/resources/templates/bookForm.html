@@ -4,7 +4,7 @@
 
 <body>
 <section id="bookForm1">
-    <form method="POST" th:object="${book}">
+    <form method="POST" th:object="${book}" th:action="{/private/books/create}">
 
 <!--        <section>-->
 <!--            <div th:if="${#fields.hasErrors()}">-->

@@ -16,7 +16,7 @@ import javax.validation.Valid;
 
 @AllArgsConstructor
 @Controller
-@RequestMapping("/signup")
+@RequestMapping("/public/signup")
 public class UserController {
 
     @GetMapping
@@ -33,7 +33,7 @@ public class UserController {
         }
 
         redirectAttributes.addFlashAttribute("Success");
-        return "redirect:/books";
+        return "redirect:/public/books";
     }
 
 }

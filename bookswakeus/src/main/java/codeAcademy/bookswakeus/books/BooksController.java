@@ -16,13 +16,12 @@ import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
-@RequestMapping("/books")
 @Controller
 public class BooksController {
 
     private final BooksService booksService;
 
-    @GetMapping
+    @GetMapping("/public/books")
     public String getBooks(Pageable pageable, Model model) {
         Page<Book> books = booksService.getBooks(pageable);
         model.addAttribute("books", books);
@@ -30,14 +29,14 @@ public class BooksController {
     }
 
 
-    @GetMapping("/create")
+    @GetMapping("/private/books/create")
     public String openBookForm(Model model){
 
         model.addAttribute("book", new Book());
         return "bookForm";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/private/books/create")
     public String createBook(@Valid Book book, BindingResult errors, RedirectAttributes redirectAttributes){
 
         if(errors.hasErrors()){
@@ -50,11 +49,11 @@ public class BooksController {
 //        redirectAttributes.addAttribute("message", message);
 
 
-        return "redirect:/books";
+        return "redirect:/public/books";
     }
 
 
-    @GetMapping("/{id}")
+    @GetMapping("/private/books/{id}")
     public String openBook(@PathVariable UUID id, Model model) {
 
         model.addAttribute("book", booksService.getBook(id));
@@ -62,7 +61,7 @@ public class BooksController {
         return "bookForm";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/private/books/{id}")
     public String updateBook(@Valid Book book, BindingResult errors ,RedirectAttributes redirectAttributes){
 
         if(errors.hasErrors()){
@@ -73,10 +72,10 @@ public class BooksController {
         String message = "Book '" + book.getTitle() + "' successfully updated";
         redirectAttributes.addFlashAttribute("message", message);
 
-        return "redirect:/books";
+        return "redirect:/public/books";
     }
 
-    @PostMapping("/{id}/delete")
+    @PostMapping("/private/books/{id}/delete")
     public String deleteBook(@PathVariable UUID id, RedirectAttributes redirectAttributes){
 
         Book book = booksService.getBook(id);
@@ -84,11 +83,11 @@ public class BooksController {
         String message = "Book '" + book.getTitle() + "' successfully deleted";
         redirectAttributes.addFlashAttribute("message", message);
 
-        return "redirect:/books";
+        return "redirect:/public/books";
 
     }
 
-    @GetMapping("/search")
+    @GetMapping("/public/books/search")
     public String searchBook(@RequestParam String input, Model model){
 
         List<Book> filteredBooks = booksService.findAllBooksByTitle(input);

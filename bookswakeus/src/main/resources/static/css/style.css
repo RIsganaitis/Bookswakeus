@@ -89,3 +89,8 @@ table * {
     display: flex;
     align-items: center;
 }
+
+.logout-btn {
+        background: none;
+        border: none;
+}
