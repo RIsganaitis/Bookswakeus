@@ -3,7 +3,7 @@
       th:replace="fragments/layout :: layout(#{page.favourites}, ~{:: #mainSection})">
 
 <section id="mainSection">
-    <h1>favoritai</h1>
+    <h1 th:text="#{favourites.h1}">favoritai</h1>
 
     <table class="table table-striped">
         <thead>

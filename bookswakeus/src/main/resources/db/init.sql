@@ -24,3 +24,15 @@ insert into Book (id, title, author, description, price) values
   ('00000000-0000-0000-0000-000000000020' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.2),
   ('00000000-0000-0000-0000-000000000021' ,'Red Storm Rising', 'Tom Clancy', 'very good book', 15.2),
   ('00000000-0000-0000-0000-000000000022' ,'Red Storm Rising1', 'Tom Clancy1', 'very good book1', 4.12);
+
+insert into Users values
+('user', '{bcrypt}$2a$12$ypenIMyjnld3/E2J0hxvsui08v.bglZhXLQtfZIa/bytHSOMnoDd6', '6666'), --pass
+('admin', '{bcrypt}$2a$12$49UAOw8XjgLA/hyYROGQ4edX6XjUGvW1f8yHf6JQhH19ISQCGXbZG', '777'); --passs
+
+insert into Role values
+('user'),
+('admin');
+
+INSERT INTO users_roles values
+('user', 'user'),
+('admin', 'admin');

@@ -3,57 +3,57 @@
       th:replace="fragments/layout :: layout(#{bookForm.title}, ~{:: #bookForm})">
 
 <body>
-<section id="bookForm1">
-    <form method="POST" th:object="${book}" th:action="{/private/books/create}">
+<!--<section id="bookForm1">-->
+<!--    <form method="POST" th:object="${book}" th:action="{/public/books/create}">-->
 
-<!--        <section>-->
-<!--            <div th:if="${#fields.hasErrors()}">-->
-<!--                <ul>-->
-<!--                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>-->
-<!--                </ul>-->
+<!--&lt;!&ndash;        <section>&ndash;&gt;-->
+<!--&lt;!&ndash;            <div th:if="${#fields.hasErrors()}">&ndash;&gt;-->
+<!--&lt;!&ndash;                <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>&ndash;&gt;-->
+<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        </section>&ndash;&gt;-->
+<!--        <h2 th:text="#{book.create}"></h2>-->
+<!--        <div>-->
+<!--            <label th:text="#{book.form.title}">Title</label>-->
+<!--            <input th:field="*{title}" th:errorclass="error-block">-->
+<!--            <div th:if="${#fields.hasErrors('title')}">-->
+<!--                <span th:errors="*{title}">Errors</span>-->
 <!--            </div>-->
-<!--        </section>-->
-        <h2 th:text="#{book.create}"></h2>
-        <div>
-            <label th:text="#{book.form.title}">Title</label>
-            <input th:field="*{title}" th:errorclass="error-block">
-            <div th:if="${#fields.hasErrors('title')}">
-                <span th:errors="*{title}">Errors</span>
-            </div>
 
-        </div>
+<!--        </div>-->
 
-        <div>
-            <label th:text="#{book.form.author}">Author</label>
-            <input th:field="*{author}" th:errorclass="error-block">
-            <div th:if="${#fields.hasErrors('author')}">
-                <span th:errors="*{author}">Errors</span>
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <label th:text="#{book.form.author}">Author</label>-->
+<!--            <input th:field="*{author}" th:errorclass="error-block">-->
+<!--            <div th:if="${#fields.hasErrors('author')}">-->
+<!--                <span th:errors="*{author}">Errors</span>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div>
-            <label th:text="#{book.form.description}">Title</label>
-            <textarea th:field="*{description}" th:errorclass="error-block"></textarea>
-            <div th:if="${#fields.hasErrors('description')}">
-                <span th:errors="*{description}">Errors</span>
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <label th:text="#{book.form.description}">Title</label>-->
+<!--            <textarea th:field="*{description}" th:errorclass="error-block"></textarea>-->
+<!--            <div th:if="${#fields.hasErrors('description')}">-->
+<!--                <span th:errors="*{description}">Errors</span>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div>
-            <label th:text="#{book.form.price}">Title</label>
-            <input th:field="*{price}" th:errorclass="error-block">
-            <div th:if="${#fields.hasErrors('price')}">
-                <span th:errors="*{price}">Errors</span>
-            </div>
-        </div>
+<!--        <div>-->
+<!--            <label th:text="#{book.form.price}">Title</label>-->
+<!--            <input th:field="*{price}" th:errorclass="error-block">-->
+<!--            <div th:if="${#fields.hasErrors('price')}">-->
+<!--                <span th:errors="*{price}">Errors</span>-->
+<!--            </div>-->
+<!--        </div>-->
 
-        <div>
-            <button type="submit" th:text="Add"></button>
-        </div>
-    </form>
+<!--        <div>-->
+<!--            <button type="submit" th:text="Add"></button>-->
+<!--        </div>-->
+<!--    </form>-->
 
 
-</section>
+<!--</section>-->
 
 
 <section id="bookForm">

@@ -15,16 +15,6 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class WebMvcConfiguration implements WebMvcConfigurer{
 
 
-//    cookie resolver
-//    @Bean
-//    public LocaleResolver localeResolver(){
-//        CookieLocaleResolver localeResolver = new CookieLocaleResolver();
-//        localeResolver.setDefaultLocale(Locale.US);
-//        return localeResolver;
-//    }
-
-
-//    session resolver
     @Bean
     public LocaleResolver localeResolver(){
 
@@ -55,16 +45,6 @@ public class WebMvcConfiguration implements WebMvcConfigurer{
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
     }
-
-//    Validation messages. Greičiausiai reiks ištrint
-//    @Bean
-//    @Override
-//    public Validator getValidator() {
-//        LocalValidatorFactoryBean localValidatorFactoryBean = new LocalValidatorFactoryBean();
-//        localValidatorFactoryBean.setValidationMessageSource(messageSource());
-//        return localValidatorFactoryBean;
-//    }
-    //
 
 
     @Override

@@ -16,7 +16,6 @@ public class CustomControllerAdvice {
     }
 
 
-//    nutriminti empty spaces
     @InitBinder
     public void initBinder(WebDataBinder webDataBinder){
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);

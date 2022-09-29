@@ -2,7 +2,6 @@ package codeAcademy.bookswakeus.books;
 
 import codeAcademy.bookswakeus.books.errors.BookNotFoundException;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
@@ -29,23 +28,23 @@ public class BooksController {
     }
 
 
-    @GetMapping("/private/books/create")
+    @GetMapping("/public/books/create")
     public String openBookForm(Model model){
 
         model.addAttribute("book", new Book());
         return "bookForm";
     }
 
-    @PostMapping("/private/books/create")
+    @PostMapping("/public/books/create")
     public String createBook(@Valid Book book, BindingResult errors, RedirectAttributes redirectAttributes){
 
         if(errors.hasErrors()){
             return "bookForm";
         }
         booksService.createBook(book);
-        String message = "Book '" + book.getTitle() + "' successfully created";
+//        String message = "Book '" + book.getTitle() + "' successfully created";
 //        redirectAttributes.addFlashAttribute("message", message);
-        redirectAttributes.addFlashAttribute("message", "successfully.created");
+        redirectAttributes.addFlashAttribute("message", "book.successfully.added");
 //        redirectAttributes.addAttribute("message", message);
 
 
@@ -53,7 +52,7 @@ public class BooksController {
     }
 
 
-    @GetMapping("/private/books/{id}")
+    @GetMapping("/public/books/{id}")
     public String openBook(@PathVariable UUID id, Model model) {
 
         model.addAttribute("book", booksService.getBook(id));
@@ -61,7 +60,7 @@ public class BooksController {
         return "bookForm";
     }
 
-    @PostMapping("/private/books/{id}")
+    @PostMapping("/public/books/{id}")
     public String updateBook(@Valid Book book, BindingResult errors ,RedirectAttributes redirectAttributes){
 
         if(errors.hasErrors()){
@@ -69,19 +68,19 @@ public class BooksController {
         }
 
         booksService.updateBook(book);
-        String message = "Book '" + book.getTitle() + "' successfully updated";
-        redirectAttributes.addFlashAttribute("message", message);
+//        String message = "Book '" + book.getTitle() + "' successfully updated";
+        redirectAttributes.addFlashAttribute("message", "book.seccessfylly.edited");
 
         return "redirect:/public/books";
     }
 
-    @PostMapping("/private/books/{id}/delete")
+    @PostMapping("/public/books/{id}/delete")
     public String deleteBook(@PathVariable UUID id, RedirectAttributes redirectAttributes){
 
         Book book = booksService.getBook(id);
         booksService.deleteBook(id);
-        String message = "Book '" + book.getTitle() + "' successfully deleted";
-        redirectAttributes.addFlashAttribute("message", message);
+//        String message = "Book '" + book.getTitle() + "' successfully deleted";
+        redirectAttributes.addFlashAttribute("message", "book.successfully.deleted");
 
         return "redirect:/public/books";
 
@@ -104,17 +103,5 @@ public class BooksController {
 
         return "error/bookNotFoundPage";
     }
-
-//    footer data
-//    private final CompanyInfo companyInfo;
-//
-//    @ModelAttribute("companyInfo")
-//    public CompanyInfo addCompanyDataModel(){
-//        return companyInfo;
-//    }
-
-
-//    footer data
-
 
 }

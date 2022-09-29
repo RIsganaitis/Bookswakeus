@@ -4,11 +4,13 @@
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
+<!--        <link rel="stylesheet" src="/css/style.css">-->
+
+        <link rel="stylesheet" th:href="@{/css/style.css}">
     </head>
 <body>
-<h1 th:text="#{error.404(${path})}">Page not found</h1>
-<img th:src="@{/images/testpic.png}">
-<img class="login-main" th:src="@{images/book_photo.jpg}">
+<h1 class="errheader" th:text="#{error.404(${path})}">Page not found</h1>
+<img class="login-main errimg" th:src="@{/images/book_photo.jpg}">
 
 </body>
 </html>

@@ -94,3 +94,25 @@ table * {
         background: none;
         border: none;
 }
+
+.errheader {
+    z-index: 1;
+    position: relative;
+}
+
+.errimg {
+    position: absolute;
+    z-index: 0;
+    height: 71vw;
+    width: auto;
+    margin-top: -274px;
+}
+
+.myButtons {
+    display: flex;
+    justify-content: center;
+}
+
+.activeCustom {
+    background-color: #8ea5ec94 !Important;
+}

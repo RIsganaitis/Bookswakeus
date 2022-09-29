@@ -3,36 +3,17 @@
 th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
 
 <section id="mainSection">
-    <!--languages-->
 
-<!--    <div>-->
-<!--        <a th:href="@{''(lang='lt')} " th:text="#{lang.lithuanian}">LT</a>-->
-<!--        <a th:href="@{''(lang='en')}" th:text="#{lang.english} ">EN</a>-->
-<!--    </div>-->
-    <!--end of languages-->
-
-    <!--search-->
-
-<!--    <div>-->
-<!--        <form th:action="@{/books/search}" method="get">-->
-<!--            <input type="text" name="input" th:value="${param.input}" placeholder="find by book title">-->
-<!--            <button th:text="Search"></button>-->
-<!--        </form>-->
-<!--    </div>-->
-    <!--end of search-->
 
     <div th:if="${books.isEmpty()}">
         <h1>No books found</h1>
     </div>
 
-    <!--check sorting direction-->
-    <!--    <div th:text="${books.sort.getOrderFor('title')?.direction}"></div>-->
-    <!--end of check sorting direction-->
-
     <table class="table table-striped" th:if="${ not books.isEmpty()}">
         <thead>
         <tr>
-            <th>Title
+            <th>
+                <span th:text="#{book.form.title}">title</span>
                 <a th:with="ascending=${books.sort.getOrderFor('title')?.direction?.name() eq 'ASC'}"
                    th:href="@{''(sort='title,' + ${ascending ? 'DESC' : 'ASC'} + ',ignoreCase')}">
                     <i class="fa-solid"
@@ -40,10 +21,10 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
                     ></i>
                 </a>
             </th>
-            <th>Author</th>
-            <th>Description</th>
+            <th th:text="#{book.form.author}">Author</th>
+            <th th:text="#{book.form.description}">Description</th>
             <th>
-                <span>Price</span>
+                <span th:text="#{book.form.price}">Price</span>
                 <a th:with="ascending=${books.sort.getOrderFor('price')?.direction?.name() eq 'ASC'}"
                    th:href="@{''(sort='price,' + ${ascending ? 'DESC' : 'ASC'})}">
                     <i class="fa-solid"
@@ -60,11 +41,11 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
             <td th:text="${book.author}">Tom Clancy</td>
             <td th:text="${book.description}">GBest book</td>
             <td th:text="${book.price}">10</td>
-            <td>
-                <a class="btn btn-outline-secondary" th:href="@{/private/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
+            <td class="myButtons">
+                <a class="btn btn-outline-secondary" th:href="@{/public/books/{id}(id=${book.id})}" th:text="#{main.edit}">Edit</a>
 
-<!--                <form method="post">-->
-                <form th:action="@{/private/books/{id}/delete(id=${book.id})}" method="post">
+
+                <form th:action="@{/public/books/{id}/delete(id=${book.id})}" method="post">
                     <button class="btn btn-outline-danger" type="submit" th:text="#{main.delete}">Delete</button>
                 </form>
 
@@ -87,43 +68,27 @@ th:replace="fragments/layout :: layout(#{books.title}, ~{:: #mainSection})">
         <li th:classappend="${books.hasPrevious() ? '' : 'disabled'}" class="page-item">
             <a class="page-link" th:href="@{''(page=${books.number - 1}, sort=${orderParam})}" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
-                <!--                <span class="sr-only">Previous</span>-->
             </a>
         </li>
 
 
         <li th:each="page : ${#numbers.sequence(1, books.totalPages)}" class="page-item"
-            th:classappend="${books.number == page - 1 ? 'active' : ''}">
+            th:classappend="${books.number == page - 1 ? ' active' : ''}">
             <a th:href="@{''(page=${page - 1}, sort=${orderParam})}"
-               th:text="${page}" class="page-link">1</a>        </li>
+               th:text="${page}" class="page-link"
+               th:classappend="${books.number == page - 1 ? 'activeCustom' : ''}">1</a>        </li>
 
 
         <li th:classappend="${books.hasNext() ? '' : 'disabled'}" class="page-item">
             <a class="page-link" th:href="@{''(page=${books.number + 1}, sort=${orderParam})}" aria-label="Next">
                 <span aria-hidden="true">&raquo;</span>
-                <!--                <span class="sr-only">Next</span>-->
+
             </a>
         </li>
     </ul>
-    <!--    end of pagination-->
 
-
-    <!--    <section>-->
-    <!--        <div th:each="book : ${books}">-->
-    <!--&lt;!&ndash;            <img src="">&ndash;&gt;-->
-    <!--            <div>-->
-    <!--                <span th:text="${book.title}"></span>-->
-    <!--                <span th:text="${book.author}"></span>-->
-    <!--                <span th:text="${book.price}"></span>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </section>-->
-
-
-
-    <!--create books-->
     <div>
-        <a class="btn btn-primary" th:href="@{/private/books/create}" th:text="#{main.createbook}">Add book</a>
+        <a class="btn btn btn-outline-primary" th:href="@{/public/books/create}" th:text="#{main.createbook}">Add book</a>
     </div>
 
 </section>
