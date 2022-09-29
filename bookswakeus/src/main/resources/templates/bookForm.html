@@ -3,61 +3,9 @@
       th:replace="fragments/layout :: layout(#{bookForm.title}, ~{:: #bookForm})">
 
 <body>
-<!--<section id="bookForm1">-->
-<!--    <form method="POST" th:object="${book}" th:action="{/public/books/create}">-->
-
-<!--&lt;!&ndash;        <section>&ndash;&gt;-->
-<!--&lt;!&ndash;            <div th:if="${#fields.hasErrors()}">&ndash;&gt;-->
-<!--&lt;!&ndash;                <ul>&ndash;&gt;-->
-<!--&lt;!&ndash;                    <li th:each="error : ${#fields.errors()}" th:text="${error}">klaida</li>&ndash;&gt;-->
-<!--&lt;!&ndash;                </ul>&ndash;&gt;-->
-<!--&lt;!&ndash;            </div>&ndash;&gt;-->
-<!--&lt;!&ndash;        </section>&ndash;&gt;-->
-<!--        <h2 th:text="#{book.create}"></h2>-->
-<!--        <div>-->
-<!--            <label th:text="#{book.form.title}">Title</label>-->
-<!--            <input th:field="*{title}" th:errorclass="error-block">-->
-<!--            <div th:if="${#fields.hasErrors('title')}">-->
-<!--                <span th:errors="*{title}">Errors</span>-->
-<!--            </div>-->
-
-<!--        </div>-->
-
-<!--        <div>-->
-<!--            <label th:text="#{book.form.author}">Author</label>-->
-<!--            <input th:field="*{author}" th:errorclass="error-block">-->
-<!--            <div th:if="${#fields.hasErrors('author')}">-->
-<!--                <span th:errors="*{author}">Errors</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div>-->
-<!--            <label th:text="#{book.form.description}">Title</label>-->
-<!--            <textarea th:field="*{description}" th:errorclass="error-block"></textarea>-->
-<!--            <div th:if="${#fields.hasErrors('description')}">-->
-<!--                <span th:errors="*{description}">Errors</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div>-->
-<!--            <label th:text="#{book.form.price}">Title</label>-->
-<!--            <input th:field="*{price}" th:errorclass="error-block">-->
-<!--            <div th:if="${#fields.hasErrors('price')}">-->
-<!--                <span th:errors="*{price}">Errors</span>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div>-->
-<!--            <button type="submit" th:text="Add"></button>-->
-<!--        </div>-->
-<!--    </form>-->
-
-
-<!--</section>-->
-
 
 <section id="bookForm">
-    <form method="POST" th:object="${book}">
+    <form method="POST" th:object="${book}" th:action="@{/public/books/create}">
         <div class="form-outline mb-4">
             <input class="form-control" th:field="*{title}" th:errorclass="error-block"/>
             <label class="form-label" th:text="#{book.form.title}">Title</label>
@@ -89,17 +37,7 @@
                 <span th:errors="*{price}">Errors</span>
             </div>
         </div>
-
-        <!-- Checkbox -->
-        <div class="form-check d-flex justify-content-center mb-4">
-            <input class="form-check-input me-2" type="checkbox" value="" id="form4Example4" checked />
-            <label class="form-check-label" for="form4Example4">
-                Send me a copy of this message
-            </label>
-        </div>
-
-        <!-- Submit button -->
-        <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+        <button type="submit" class="btn btn-outline-primary btn-block mb-4">Send</button>
     </form>
 </section>
 
